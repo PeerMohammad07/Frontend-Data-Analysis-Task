@@ -83,8 +83,8 @@ Rounding: All average values are rounded to three decimal places.
 # Screenshots
 
 ### Table 1: Crop with Maximum and Minimum Production (1950-2020)
-![Table 1 Screenshot](src/assets/images/table1.png)
+![Table 1 Screenshot](src/assets/images/Table1.png)
 
 ### Table 2: Average Yield and Cultivation Area (1950-2020)
-![Table 2 Screenshot](src/assets/images/Table1.png)
+![Table 2 Screenshot](src/assets/images/Table2.png)
 
