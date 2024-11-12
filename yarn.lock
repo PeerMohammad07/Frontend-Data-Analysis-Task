@@ -694,7 +694,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:7.13.5":
+"@mantine/core@npm:^7.13.5":
   version: 7.13.5
   resolution: "@mantine/core@npm:7.13.5"
   dependencies:
@@ -3394,7 +3394,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "vite-min-template@workspace:."
   dependencies:
-    "@mantine/core": "npm:7.13.5"
+    "@mantine/core": "npm:^7.13.5"
     "@mantine/hooks": "npm:7.13.5"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
