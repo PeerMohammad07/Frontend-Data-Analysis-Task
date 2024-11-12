@@ -21,13 +21,22 @@ git clone https://github.com/PeerMohammad07/Frontend-Data-Analysis-Task.git
 
 cd Frontend-Data-Analysis-Task
 
-### 2. Install dependencies
+### 2. Install Yarn (if not installed)
+
+If you don't have Yarn installed on your system, you can install it globally by running the following command:
+
+Using npm (if you have Node.js installed):
+
+npm install --global yarn
+
+### 3. Install dependencies
 
 Ensure that you have Node.js installed. Then, install the necessary packages using:
 
 yarn install
 
-### 3. Start the application
+### 4. Start the application
+
 To run the application and view it in the browser:
 
 yarn dev
