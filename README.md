@@ -39,13 +39,17 @@ This will open the browser automatically with the desired page rendered.
 Once the app is running, it will display two tables:
 
 Table 1: Displays the crop with maximum production and the crop with minimum production for each year from 1950 to 2020.
+
 Table 2: Shows the average yield and average cultivation area for each crop from 1950 to 2020.
+
 The average values are rounded to three decimal places, and missing values are treated as 0.
 
 # Features
 
 Aggregated crop data by year (Maximum and Minimum Production)
+
 Aggregated crop data by crop (Average Yield and Average Cultivation Area)
+
 Clean and responsive tables implemented using Mantine v7
 
 
