@@ -6,13 +6,13 @@ import { rawData } from "./data/data";
 
 export default function App() {
 
-  // Extract year 
+  // Extract the year from a string like "2021, 2022"
   const extractYear = (yearString: string): string => {
     const yearPart = yearString.split(',')[1];
     return yearPart ? yearPart.trim() : '0';
   };
 
-  // Function to find max/min crops 
+  // Function to find the crop with the max and min production
   const findExtremeCrops = (crops: ICropProduction[]): {
     maxCrop: ICropProduction | null;
     minCrop: ICropProduction | null;
@@ -21,13 +21,13 @@ export default function App() {
       return { maxCrop: null, minCrop: null };
     }
 
-    // Finding max crop
+    // Finding the crop with the maximum production
     const maxCrop = crops.reduce((max, curr) =>
       curr.production > max.production ? curr : max,
       crops[0]
     );
 
-    // Finding min crop
+    // Finding the crop with the minimum production
     const minCrop = crops.reduce((min, curr) =>
       curr.production < min.production ? curr : min,
       crops[0]
@@ -36,10 +36,10 @@ export default function App() {
     return { maxCrop, minCrop };
   };
 
-  // Main function to generate Table A 
+  // Generate data for Table A (Year vs Max and Min crop names)
   function generateTableA(data: ICropData[]): ITableARow[] {
 
-    // Group data by year 
+    // Group data by year
     const yearGroups = data.reduce<IYearGroup>((acc, curr) => {
       const year = extractYear(curr.Year);
       if (!acc[year]) {
@@ -49,7 +49,7 @@ export default function App() {
       return acc;
     }, {});
 
-    // Process each year's data
+    // Process each year's data to find the max and min crop
     const output: ITableARow[] = Object.entries(yearGroups).map(([year, crops]) => {
 
       // Filter and transform valid crops
@@ -65,8 +65,8 @@ export default function App() {
 
       return {
         Year: parseInt(year),
-        Max: maxCrop?.name || 0,
-        Min: minCrop?.name || 0
+        Max: maxCrop?.name || 0,  // Defaulting to 0 if no max crop found
+        Min: minCrop?.name || 0   // Defaulting to 0 if no min crop found
       };
     });
 
@@ -74,12 +74,12 @@ export default function App() {
     return output.sort((a, b) => a.Year - b.Year);
   }
 
-
+  // Generate data for Table B (Crop vs Average Yield and Area)
   const generateTableB = (data: ICropData[]) => {
 
     // Group data by crop
     const cropGroups = data.reduce<IYearGroup>((acc, curr) => {
-      const cropName = curr["Crop Name"]
+      const cropName = curr["Crop Name"];
       if (!acc[cropName]) {
         acc[cropName] = [];
       }
@@ -89,7 +89,7 @@ export default function App() {
 
     const output = Object.entries(cropGroups).map(([cropName, cropData]): ITableBRow => {
 
-      // Filter out empty values and calculate averages
+      // Filter out empty values and calculate averages for yield and area
       const validYields = cropData
         .filter(d => d["Yield Of Crops (UOM:Kg/Ha(KilogramperHectare))"] !== "")
         .map(d => Number(d["Yield Of Crops (UOM:Kg/Ha(KilogramperHectare))"]));
@@ -98,13 +98,12 @@ export default function App() {
         .filter(d => d["Area Under Cultivation (UOM:Ha(Hectares))"] !== "")
         .map(d => Number(d["Area Under Cultivation (UOM:Ha(Hectares))"]));
 
-
-      // Finding the avg yield
+      // Calculate average yield
       const avgYield = validYields.length > 0
         ? validYields.reduce((sum, val) => sum + val, 0) / validYields.length
         : 0;
 
-      // Finding the avg area
+      // Calculate average area
       const avgArea = validAreas.length > 0
         ? validAreas.reduce((sum, val) => sum + val, 0) / validAreas.length
         : 0;
@@ -116,16 +115,15 @@ export default function App() {
       };
     });
 
-    return output
+    return output;
   }
 
-
+  // Prepare Table A and Table B data
   const Table1 = generateTableA(rawData);
-  const Table2 = generateTableB(rawData)
+  const Table2 = generateTableB(rawData);
 
   return (
-    <>
-      <MantineProvider theme={{
+    <MantineProvider theme={{
       colors: {
         brand: ['#E2F0FF', '#BAD9FF', '#91C3FF', '#69ACFF', '#4196FF', '#1980FF', '#006AFF', '#0054CC', '#003D99', '#002766'],
       },
@@ -201,7 +199,7 @@ export default function App() {
                 fw={900}
                 variant="gradient"
                 gradient={{ from: 'pink', to: 'cyan', deg: 90 }}
-                  ta="center"
+                ta="center"
                 mb="md"
               >
                 Table B
@@ -215,6 +213,5 @@ export default function App() {
         </div>
       </Container>
     </MantineProvider>
-    </>
-  )
+  );
 }
