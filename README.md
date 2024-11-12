@@ -17,7 +17,7 @@ To get started with the project, follow the steps below:
 
 ### 1. Clone the repository
 
-git clone [<your-repository-url>](https://github.com/PeerMohammad07/Frontend-Data-Analysis-Task.git)
+git clone https://github.com/PeerMohammad07/Frontend-Data-Analysis-Task.git
 
 cd Frontend-Data-Analysis-Task
 
